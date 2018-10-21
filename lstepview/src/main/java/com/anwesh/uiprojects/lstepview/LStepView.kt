@@ -18,17 +18,23 @@ fun Canvas.drawLStep(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
+    val hGap : Float = h / (nodes)
+    val x : Float = gap * i + gap
     val size : Float = gap / 3
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
     paint.color = Color.parseColor("#3F51B5")
     save()
-    translate(gap * i + gap, h/2)
+    translate(x, h/2)
     for (j in 0..1) {
         val sc : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f * j)) * 2
         save()
         rotate(-90f * j)
         drawLine(0f, 0f, (size * j + size) * sc, 0f, paint)
+        restore()
+        save()
+        translate(-x + (w - gap) * j + gap/2, -h / 2 + hGap * i)
+        drawLine(0f, 0f, 0f, hGap * sc, paint)
         restore()
     }
     restore()
