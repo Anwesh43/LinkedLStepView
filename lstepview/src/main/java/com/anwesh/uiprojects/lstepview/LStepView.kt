@@ -25,10 +25,10 @@ fun Canvas.drawLStep(i : Int, scale : Float, paint : Paint) {
     save()
     translate(gap * i + gap, h/2)
     for (j in 0..1) {
-        val sc : Float = Math.min(0.5f, Math.min(0f, scale - 0.5f * j)) * 2
+        val sc : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f * j)) * 2
         save()
         rotate(-90f * j)
-        drawLine(0f, 0f, (size/2 * j + size/2) * sc, 0f, paint)
+        drawLine(0f, 0f, (size * j + size) * sc, 0f, paint)
         restore()
     }
     restore()
