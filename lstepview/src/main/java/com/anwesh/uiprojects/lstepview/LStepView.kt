@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.lstepview
  * Created by anweshmishra on 21/10/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Paint
@@ -186,6 +187,14 @@ class LStepView(ctx : Context) : View(ctx) {
             lstep.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : LStepView {
+            val view : LStepView = LStepView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
